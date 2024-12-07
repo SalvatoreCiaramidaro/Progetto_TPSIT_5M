@@ -1,17 +1,18 @@
-<!DOCTYPE html>
+<!doctype html>
 <html>
+<head><title>Login</title>
+  <link href="styles/stile.css" rel="stylesheet" type="text/css">
+</head>
 <body>
-
-<h2>HTML Forms</h2>
-
-<form action="/action_page.php">
-  <label for="fname">Username:</label><br>
-  <input type="text" id="user" name="user" ><br>
-  <label for="lname">Password:</label><br>
-  <input type="text" id="password" name="password" ><br><br>
-  <input type="submit" value="Submit">
-</form> 
-
-
+<div id= "corpo" >
+    <h2>Login</h2>
+    <div id= "login">
+    <form method="post" action="/login">
+        Username: <input type="text" name="username"><br>
+        Password: <input type="password" name="password"><br>
+        <input type="submit" value="Login">
+    </form>
+    </div>
+</div>
 </body>
 </html>

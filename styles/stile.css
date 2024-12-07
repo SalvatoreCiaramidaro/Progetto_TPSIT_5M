@@ -1,0 +1,21 @@
+#corpo {
+    position: relative;
+    top: 0; left: 0;
+    width: 1920px;
+    height: 1080px; /* Added 'px' unit */
+    margin: 2px auto;
+    text-align: center;
+    padding: 2px; 
+    background-color: #ffffff;
+}
+
+#login {
+    position: center;
+    top: 0; left: 0;
+    width: 760px;
+    height: 90px; /* Added 'px' unit */
+    margin: 2px auto;
+    text-align: center;
+    padding: 2px; 
+    background-color: #ffD3D3;
+}
