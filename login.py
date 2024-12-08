@@ -1,14 +1,15 @@
-from flask import Flask, request, render_template, redirect, url_for
+from flask import Flask, request, render_template, redirect, url_for, flash, jsonify
 import mariadb
 
 app = Flask(__name__)
+app.secret_key = 'your_secret_key'
 
-# Database connection configuration
+# Configurazione per la connessione al database al database con MariaDB
 db_config = {
-    "user": "your_username",
-    "password": "your_password",
+    "user": "root",
+    "password": None,  
     "host": "localhost",
-    "database": "your_database",
+    "database": "password",  
 }
 
 @app.route("/", methods=["GET"])
@@ -21,6 +22,7 @@ def login():
         username = request.form["username"]
         password = request.form["password"]
 
+        conn = None  # Inizializza connessione a None
         try:
             conn = mariadb.connect(**db_config)
             cursor = conn.cursor()
@@ -31,15 +33,19 @@ def login():
             user = cursor.fetchone()
 
             if user:
-                return "Login successful!"
+                return jsonify(success=True)
             else:
-                return "Invalid credentials, please try again."
+                return jsonify(success=False)
         except mariadb.Error as e:
-            return f"Error connecting to MariaDB: {e}"
+            return jsonify(success=False, error=str(e))
         finally:
             if conn:
                 conn.close()
     return render_template("login.html")
+
+@app.route("/index", methods=["GET"])
+def index():
+    return render_template("index.html")
 
 if __name__ == "__main__":
     app.run(debug=True)

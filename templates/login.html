@@ -1,23 +1,26 @@
 <!doctype html>
 <html>
-<head><title>Login</title>
-  <link href="static/styles/stile.css" rel="stylesheet" type="text/css">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+<head>
+    <title>Login</title>
+    <link href="static/styles/stile.css" rel="stylesheet" type="text/css">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="static/scripts/login.js"></script>
 </head>
 <body>
   <div class="ocean">
-    <div class="wave"></div>
-    <div class="wave"></div>
+      <div class="wave"></div>
+      <div class="wave"></div>
   </div>
-    <h2>Login Operatore</h2>
-    <div id= "login">
-    <form method="post" action="/login">
-      <label for="username">Username: </label><br>
-      <input type="text" id="username" name="username" required><br><br>
-      <label for="password">Password: </label><br>
-      <input type="password" id="password" name="password" pattern=".{8,}" title="La password deve contenere almeno 8 caratteri" required><br><br>
-      <input type="submit" value="Accedi">
-    </form>
-    </div>
+  <h2>Login Operatore</h2>
+  <div id="login">
+      <form id="login-form" method="post" action="/login">
+          <label for="username">Username: </label><br>
+          <input type="text" id="username" name="username" required><br><br>
+          <label for="password">Password: </label><br>
+          <input type="password" id="password" name="password" pattern=".{8,}" title="La password deve contenere almeno 8 caratteri" required><br><br>
+          <input type="submit" value="Accedi">
+      </form>
+      <div id="error-banner" style="display:none; color:red;">Invalid credentials, please try again.</div>
+  </div>
 </body>
 </html>
