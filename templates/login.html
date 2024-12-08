@@ -1,0 +1,23 @@
+<!doctype html>
+<html>
+<head><title>Login</title>
+  <link href="static/styles/stile.css" rel="stylesheet" type="text/css">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+  <div class="ocean">
+    <div class="wave"></div>
+    <div class="wave"></div>
+  </div>
+    <h2>Login</h2>
+    <div id= "login">
+    <form method="post" action="/login">
+      <label for="username">Username: </label><br>
+      <input type="text" id="username" name="username" required><br><br>
+      <label for="password">Password: </label><br>
+      <input type="password" id="password" name="password" pattern=".{8,}" title="La password deve contenere almeno 8 caratteri" required><br><br>
+      <input type="submit" value="Accedi">
+    </form>
+    </div>
+</body>
+</html>
