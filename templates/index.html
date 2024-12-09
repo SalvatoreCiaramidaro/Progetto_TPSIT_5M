@@ -1,13 +1,48 @@
-<!doctype html>
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
-    <title>Home page</title>
-    <link href="{{ url_for('static', filename='styles/stile.css') }}" rel="stylesheet" type="text/css">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Donazioni di Sangue</title>
+    <link rel="stylesheet" href="static/styles/stile_index.css">
     <link rel="icon" type="image/png" href="static/favicon/favicon.png">
 </head>
 <body>
-    <h2>Benvenuto nella pagina principale</h2>
-    <p>Login effettuato con successo!</p>
+    <header>
+        <nav class="navbar">
+            <div class="logo">❤️ Donazioni del Sangue</div>
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#info">Informazioni</a></li>
+                <li><a href="#donazioni">Donazioni</a></li>
+                <li><a href="#contatti">Contatti</a></li>
+            </ul>
+            <button class="login-btn" onclick="location.href='/login';">Login Operatore</button>
+        </nav>
+    </header>
+    <main>
+        <section id="home" class="hero">
+            <div class="hero-content">
+                <h1>Salva una Vita Oggi</h1>
+                <p>Donare sangue è un atto di solidarietà. Unisciti a noi e fai la differenza.</p>
+                <a href="#donazioni" class="cta-btn">Scopri di più</a>
+            </div>
+        </section>
+        <section id="info">
+            <h2>Informazioni</h2>
+            <p>Chi può donare? Quali sono i benefici? Tutto quello che devi sapere prima di donare.</p>
+        </section>
+        <section id="donazioni">
+            <h2>Donazioni</h2>
+            <p>Trova il centro più vicino e prenota la tua donazione. Ogni goccia conta!</p>
+        </section>
+        <section id="contatti">
+            <h2>Contatti</h2>
+            <p>Per maggiori informazioni o per diventare volontario, contattaci. Siamo qui per te.</p>
+        </section>
+    </main>
+    <footer>
+        <p>&copy; 2024 Donazioni di Sangue. Tutti i diritti riservati.</p>
+    </footer>
 </body>
 </html>

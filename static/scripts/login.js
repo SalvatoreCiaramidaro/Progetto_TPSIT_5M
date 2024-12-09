@@ -12,7 +12,7 @@ document.addEventListener('DOMContentLoaded', function() {
             if (xhr.status === 200) {
                 var response = JSON.parse(xhr.responseText);
                 if (response.success) {
-                    window.location.href = '/index';
+                    window.location.href = '/analisi';
                 } else {
                     document.getElementById('error-banner').style.display = 'block';
                 }

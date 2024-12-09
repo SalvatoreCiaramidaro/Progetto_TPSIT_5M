@@ -14,7 +14,7 @@ db_config = {
 
 @app.route("/", methods=["GET"])
 def home():
-    return redirect(url_for("login"))
+    return render_template ("index.html")
 
 @app.route("/login", methods=["GET", "POST"])
 def login():
@@ -43,9 +43,9 @@ def login():
                 conn.close()
     return render_template("login.html")
 
-@app.route("/index", methods=["GET"])
-def index():
-    return render_template("index.html")
+@app.route("/analisi", methods=["GET"])
+def analisi():
+    return render_template("analisi.html")
 
 if __name__ == "__main__":
     app.run(debug=True)
