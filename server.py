@@ -9,7 +9,7 @@ db_config = {
     "user": "root",
     "password": None,  
     "host": "localhost",
-    "database": "password",  
+    "database": "Password",  
 }
 
 @app.route("/", methods=["GET"])

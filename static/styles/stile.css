@@ -1,24 +1,63 @@
 h2 {
-    color: red;
-    text-align: center;
+  font-size: 2rem;
+  color: #000000;
+  margin-bottom: 20px;
+  font-weight: bold;
 }
 
 
 #login {
     position: center;
-    top: 0; left: 0;
-    width: 760px;
-    height: 180px; /* Added 'px' unit */
+    top: 50%; left: 50%;
+    width: 700px;
+    height: 380px; /* Added 'px' unit */
     margin: 2px auto;
     text-align: center;
     padding: 2px; 
-    background-color: blue;
+    background-color: rgb(255, 255, 255);
     border-radius: 20px;
+    align-items: center;
+    text-align: center;
 
 }
 
+#login-form input[type="text"],
+#login-form input[type="password"] {
+    width: 50%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 1rem;
+}
+
+#login-form input[type="text"]:focus,
+#login-form input[type="password"]:focus {
+    outline: none;
+    border-color: #e63946;
+    box-shadow: 0 0 5px rgba(230, 57, 70, 0.3);
+}
+
+#login-form input[type="submit"] {
+    width: 50%;
+    padding: 10px;
+    background-color: #e63946;
+    color: white;
+    font-size: 1rem;
+    font-weight: bold;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+
 label {
-    color: red;
+  display: block;
+  font-weight: bold;
+  color: #555;
+  margin-bottom: 5px;
+  text-align: center;
 }
 
 

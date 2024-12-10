@@ -1,5 +1,5 @@
-CREATE DATABASE your_database;
-USE your_database;
+CREATE DATABASE Password;
+USE Password;
 
 CREATE TABLE users (
     id INT AUTO_INCREMENT PRIMARY KEY,
