@@ -52,11 +52,11 @@ def login():
 
 @app.route("/analisi", methods=["GET", "POST"])
 def analisi():
-    conn = mariadb.connect(**db_config_analisi)
+    conn = mariadb.connect(**db_config_analisi)  # Connessione al database analisi
     cursor = conn.cursor()
 
     if request.method == "POST":
-        # Inserire nuova analisi
+        # Inserisci nuova analisi
         data = (
             request.form["nome"], request.form["cognome"], request.form["codice_fiscale"],
             request.form["sesso"], int(request.form["eta"]), request.form["data_ora_prelievo"],
@@ -71,23 +71,50 @@ def analisi():
         """, data)
         conn.commit()
 
-    # Ottenere lista analisi
+    # Recupera i dati per la tabella
     cursor.execute("SELECT * FROM analisi")
-    analisi_lista = cursor.fetchall()
+    analisi_lista = [
+        {
+            "id": row[0],
+            "nome": row[1],
+            "cognome": row[2],
+            "codice_fiscale": row[3],
+            "sesso": row[4],
+            "eta": row[5],
+            "data_ora_prelievo": row[6],
+            "luogo_prelievo": row[7],
+            "denominazione_analisi": row[8],
+            "risultato": row[9],
+            "unita_misura": row[10],
+            "valori_riferimento": row[11],
+        }
+        for row in cursor.fetchall()
+    ]
 
     conn.close()
     return render_template("analisi.html", analisi_lista=analisi_lista)
+
 
 @app.route("/elimina_analisi", methods=["POST"])
 def elimina_analisi():
     conn = mariadb.connect(**db_config_analisi)
     cursor = conn.cursor()
 
-    # Eliminare analisi per ID
+    # Elimina analisi per ID
     cursor.execute("DELETE FROM analisi WHERE id=?", (request.form["id"],))
     conn.commit()
+
+    # Riassegna gli ID consecutivi
+    cursor.execute("SET @new_id = 0;")
+    cursor.execute("UPDATE analisi SET id = (@new_id := @new_id + 1);")
+
+    # Reset dell'AUTO_INCREMENT
+    cursor.execute("ALTER TABLE analisi AUTO_INCREMENT = 1;")
+    conn.commit()
+
     conn.close()
     return redirect("/analisi")
+
 
 
 
