@@ -99,10 +99,6 @@ table tr:nth-child(even) {
     background-color: #f9f9f9;
 }
 
-table tr:hover {
-    background-color: #ffe6e6;
-}
-
 /* Pulsante elimina */
 form button[type="submit"] {
     width: auto;
