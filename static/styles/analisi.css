@@ -109,6 +109,4 @@ form button[type="submit"] {
     border-radius: 5px;
 }
 
-form button[type="submit"]:hover {
-    background-color: #cc0000;
-}
+
