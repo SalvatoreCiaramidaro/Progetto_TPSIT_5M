@@ -63,12 +63,12 @@ def analisi():
             request.form["sesso"], int(request.form["eta"]), request.form["data_ora_prelievo"],
             request.form["luogo_prelievo"], request.form["denominazione_analisi"],
             float(request.form["risultato"]), request.form["unita_misura"],
-            request.form["valori_riferimento"]
+            request.form["valori_riferimento"], int(request.form["strumenti"]), int(request.form["cod_operatore"])
         )
         cursor.execute("""
             INSERT INTO analisi (nome, cognome, codice_fiscale, sesso, eta, data_ora_prelievo, 
-            luogo_prelievo, denominazione_analisi, risultato, unita_misura, valori_riferimento)
-            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+            luogo_prelievo, denominazione_analisi, risultato, unita_misura, valori_riferimento, strumenti, cod_operatore)
+            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
         """, data)
         conn.commit()
 
@@ -93,6 +93,8 @@ def analisi():
             "risultato": row[9],
             "unita_misura": row[10],
             "valori_riferimento": row[11],
+            "strumenti": row[12],
+            "cod_operatore": row[13]
         }
         for row in cursor.fetchall()
     ]

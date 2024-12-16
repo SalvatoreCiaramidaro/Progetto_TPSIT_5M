@@ -1,5 +1,10 @@
+DROP DATABASE IF EXISTS analisi_sangue;
+
 CREATE DATABASE analisi_sangue;
 USE analisi_sangue;
+
+
+DROP TABLE IF EXISTS `analisi`;
 
 CREATE TABLE analisi (
     id INT AUTO_INCREMENT PRIMARY KEY,
@@ -13,5 +18,7 @@ CREATE TABLE analisi (
     denominazione_analisi VARCHAR(100),
     risultato FLOAT,
     unita_misura VARCHAR(20),
-    valori_riferimento VARCHAR(50)
+    valori_riferimento VARCHAR(50),
+    strumenti INT,
+    cod_operatore INT
 );
