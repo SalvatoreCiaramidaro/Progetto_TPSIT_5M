@@ -1,4 +1,4 @@
-from flask import Flask, request, render_template, redirect, jsonify
+from flask import Flask, request, render_template, redirect, jsonify, session
 import mariadb
 
 app = Flask(__name__)
@@ -21,7 +21,7 @@ db_config_analisi = {
 
 @app.route("/", methods=["GET"])
 def home():
-    return render_template ("index.html")
+    return render_template("index.html")
 
 @app.route("/login", methods=["GET", "POST"])
 def login():
@@ -34,12 +34,13 @@ def login():
             conn = mariadb.connect(**db_config)
             cursor = conn.cursor()
             cursor.execute(
-                "SELECT * FROM users WHERE username=%s AND password=%s",
+                "SELECT nome FROM users WHERE username=%s AND password=%s",
                 (username, password),
             )
             user = cursor.fetchone()
 
             if user:
+                session['nome'] = user[0]
                 return jsonify(success=True)
             else:
                 return jsonify(success=False)
@@ -72,7 +73,12 @@ def analisi():
         conn.commit()
 
     # Recupera i dati per la tabella
-    cursor.execute("SELECT * FROM analisi")
+    search_query = request.args.get('search')
+    if search_query:
+        cursor.execute("SELECT * FROM analisi WHERE nome LIKE ?", ('%' + search_query + '%',))
+    else:
+        cursor.execute("SELECT * FROM analisi")
+    
     analisi_lista = [
         {
             "id": row[0],
@@ -92,8 +98,8 @@ def analisi():
     ]
 
     conn.close()
-    return render_template("analisi.html", analisi_lista=analisi_lista)
-
+    nome = session.get('nome')
+    return render_template("analisi.html", analisi_lista=analisi_lista, nome=nome, search_query=search_query)
 
 @app.route("/elimina_analisi", methods=["POST"])
 def elimina_analisi():
@@ -114,10 +120,6 @@ def elimina_analisi():
 
     conn.close()
     return redirect("/analisi")
-
-
-
-
 
 if __name__ == "__main__":
     app.run(debug=True)
