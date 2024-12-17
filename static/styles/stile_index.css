@@ -1,4 +1,4 @@
-/* Generale */
+/* Stile generale del corpo */
 body {
     font-family: 'Poppins', sans-serif;
     margin: 0;
@@ -7,6 +7,7 @@ body {
     color: #333;
 }
 
+/* Stile dell'header */
 header {
     background: #e63946;
     color: white;
@@ -16,6 +17,7 @@ header {
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
 }
 
+/* Stile della navbar */
 .navbar {
     display: flex;
     justify-content: space-between;
@@ -46,8 +48,7 @@ header {
     transition: color 0.3s;
 }
 
-
-
+/* Stile del bottone di login */
 .login-btn {
     background: white;
     color: #e63946;
@@ -60,10 +61,7 @@ header {
     transition: background 0.3s, transform 0.2s;
 }
 
-
-
-
-/* Sezione donatore */
+/* Stile della sezione principale */
 .hero {
     background: url('https://avisemiliaromagna.it/wp-content/uploads/2021/05/Goccia-sangue-mani-creata-canva-2-1.jpg') no-repeat center center/cover;
     color: rgb(0, 0, 0);
@@ -71,8 +69,6 @@ header {
     padding: 100px 20px;
     position: relative;
 }
-
-
 
 .hero-content {
     max-width: 600px;
@@ -89,6 +85,7 @@ header {
     margin-bottom: 30px;
 }
 
+/* Stile del bottone call-to-action */
 .cta-btn {
     background: #e63946;
     color: white;
@@ -100,9 +97,7 @@ header {
     transition: background 0.3s, transform 0.2s;
 }
 
-
-
-/* Sezioni */
+/* Stile delle sezioni */
 main section {
     padding: 40px 20px;
     text-align: center;
@@ -114,7 +109,7 @@ h2 {
     margin-bottom: 20px;
 }
 
-/* Footer */
+/* Stile del footer */
 footer {
     background: #e63946;
     color: white;

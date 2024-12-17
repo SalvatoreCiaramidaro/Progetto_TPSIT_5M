@@ -31,33 +31,33 @@ def login():
 
         conn = None  # Inizializza connessione a None
         try:
-            conn = mariadb.connect(**db_config)
-            cursor = conn.cursor()
+            conn = mariadb.connect(**db_config)  # Tenta di connettersi al database con la configurazione specificata
+            cursor = conn.cursor()  # Crea un cursore per eseguire le query
             cursor.execute(
-                "SELECT nome FROM users WHERE username=%s AND password=%s",
+                "SELECT nome FROM users WHERE username=? AND password=?",  # Esegue una query per selezionare il nome dell'utente con username e password specificati
                 (username, password),
             )
-            user = cursor.fetchone()
+            user = cursor.fetchone()  # Recupera il primo risultato della query
 
             if user:
-                session['nome'] = user[0]
-                return jsonify(success=True)
+                session['nome'] = user[0]  # Salva il nome dell'utente nella sessione se l'utente esiste
+                return jsonify(success=True)  # Restituisce una risposta JSON con successo
             else:
-                return jsonify(success=False)
+                return jsonify(success=False)  # Restituisce una risposta JSON con fallimento se l'utente non esiste
         except mariadb.Error as e:
-            return jsonify(success=False, error=str(e))
+            return jsonify(success=False, error=str(e))  # Gestisce gli errori del database e restituisce una risposta JSON con l'errore
         finally:
             if conn:
-                conn.close()
-    return render_template("login.html")
+                conn.close()  # Chiude la connessione al database
+    return render_template("login.html")  # Renderizza il template di login se non è stata effettuata una richiesta POST valida
 
 @app.route("/analisi", methods=["GET", "POST"])
 def analisi():
     conn = mariadb.connect(**db_config_analisi)  # Connessione al database analisi
-    cursor = conn.cursor()
+    cursor = conn.cursor()  # Crea un cursore per eseguire le query
 
     if request.method == "POST":
-        # Inserisci nuova analisi
+        # Inserisci nuova analisi nel database
         data = (
             request.form["nome"], request.form["cognome"], request.form["codice_fiscale"],
             request.form["sesso"], int(request.form["eta"]), request.form["data_ora_prelievo"],
@@ -65,15 +65,17 @@ def analisi():
             float(request.form["risultato"]), request.form["unita_misura"],
             request.form["valori_riferimento"], int(request.form["strumenti"]), int(request.form["cod_operatore"])
         )
+        # Esegue una query SQL per inserire dati nella tabella 'analisi'
         cursor.execute("""
             INSERT INTO analisi (nome, cognome, codice_fiscale, sesso, eta, data_ora_prelievo, 
             luogo_prelievo, denominazione_analisi, risultato, unita_misura, valori_riferimento, strumenti, cod_operatore)
             VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
         """, data)
+        
         conn.commit()
 
-    # Recupera i dati per la tabella
-    search_query = request.args.get('search')
+    # Recupera i dati per la tabella delle analisi
+    search_query = request.args.get('search', '')
     if search_query:
         cursor.execute("SELECT * FROM analisi WHERE nome LIKE ?", ('%' + search_query + '%',))
     else:
@@ -100,7 +102,7 @@ def analisi():
     ]
 
     conn.close()
-    nome = session.get('nome')
+    nome = session.get('nome')  # Recupera il nome dell'utente dalla sessione
     return render_template("analisi.html", analisi_lista=analisi_lista, nome=nome, search_query=search_query)
 
 @app.route("/elimina_analisi", methods=["POST"])
@@ -108,7 +110,7 @@ def elimina_analisi():
     conn = mariadb.connect(**db_config_analisi)
     cursor = conn.cursor()
 
-    # Elimina analisi per ID
+    # Elimina analisi per ID dal database
     cursor.execute("DELETE FROM analisi WHERE id=?", (request.form["id"],))
     conn.commit()
 

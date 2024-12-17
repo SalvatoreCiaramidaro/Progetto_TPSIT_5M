@@ -12,12 +12,12 @@ document.addEventListener('DOMContentLoaded', function() {
             if (xhr.status === 200) {
                 var response = JSON.parse(xhr.responseText);
                 if (response.success) {
-                    window.location.href = '/analisi';
+                    window.location.href = '/analisi'; // Reindirizza alla pagina delle analisi
                 } else {
-                    document.getElementById('error-banner').style.display = 'block';
+                    document.getElementById('error-banner').style.display = 'block'; // Mostra il banner di errore
                 }
             } else {
-                document.getElementById('error-banner').style.display = 'block';
+                document.getElementById('error-banner').style.display = 'block'; // Mostra il banner di errore
             }
         };
 

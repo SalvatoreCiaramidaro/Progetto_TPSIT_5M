@@ -3,18 +3,20 @@
 <head>
     <title>Gestione Analisi</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Icona della pagina -->
     <link rel="icon" type="image/png" href="static/favicon/favicon.png">
+    <!-- Collegamento al file CSS per lo stile -->
     <link rel="stylesheet" type="text/css" href="static/styles/analisi.css">
 </head>
 <body>
     <h2>Gestione delle Analisi</h2>
 
     {% if nome %}
+    <!-- Messaggio di benvenuto -->
     <p>Benvenuto, {{ nome }}!</p>
     {% endif %}
 
-    
-
+    <!-- Form per inserire una nuova analisi -->
     <form method="POST" action="/analisi">
         <h3>Inserisci una nuova analisi:</h3>
         <label>Nome:</label>
@@ -61,10 +63,12 @@
 
     <h3>Lista Analisi</h3>
     <br>
+    <!-- Form per cercare un'analisi -->
     <form method="GET" action="/analisi">
         <input type="text" name="search" placeholder="Cerca per nome" value="{{ search_query }}">
         <button type="submit">Cerca</button>
     </form>
+    <!-- Tabella delle analisi -->
     <table border="1">
         <thead>
             <tr>
@@ -103,6 +107,7 @@
                 <td>{{ analisi.strumenti }}</td>
                 <td>{{ analisi.cod_operatore }}</td>
                 <td>
+                    <!-- Form per eliminare un'analisi -->
                     <form method="POST" action="/elimina_analisi">
                         <input type="hidden" name="id" value="{{ analisi.id }}">
                         <button type="submit">Elimina</button>

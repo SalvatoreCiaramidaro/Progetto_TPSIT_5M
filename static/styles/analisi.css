@@ -83,30 +83,33 @@ table {
     box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
 }
 
+/* Stile per celle di intestazione e celle di dati della tabella */
 table th, table td {
     padding: 15px;
     text-align: center;
-    border: 1px solid #ddd;
+    border: 1px solid #ddd; /* Bordo delle celle */
 }
 
+/* Stile per celle di intestazione della tabella */
 table th {
-    background-color: #ff4d4d;
-    color: white;
-    font-weight: bold;
+    background-color: #ff4d4d; /* Colore di sfondo delle intestazioni */
+    color: white; /* Colore del testo delle intestazioni */
+    font-weight: bold; /* Testo in grassetto per le intestazioni */
 }
 
+/* Stile per righe pari della tabella */
 table tr:nth-child(even) {
-    background-color: white;
+    background-color: white; /* Colore di sfondo per le righe pari */
 }
 
-/* Pulsante elimina */
+/* Stile per il pulsante elimina */
 form button[type="submit"] {
-    width: auto;
-    padding: 5px 10px;
-    background-color: #e63939;
-    font-size: 0.9em;
-    border: none;
-    border-radius: 5px;
+    width: auto; /* Larghezza automatica */
+    padding: 5px 10px; /* Spaziatura interna del pulsante */
+    background-color: #e63939; /* Colore di sfondo del pulsante */
+    font-size: 0.9em; /* Dimensione del testo del pulsante */
+    border: none; /* Nessun bordo */
+    border-radius: 5px; /* Angoli arrotondati */
 }
 
 

@@ -1,3 +1,4 @@
+/* Stile per gli elementi h2 */
 h2 {
   font-size: 2rem;
   color: #000000;
@@ -5,95 +6,102 @@ h2 {
   font-weight: bold;
 }
 
-
+/* Stile per il contenitore del login */
 #login {
-    position: center;
-    top: 50%; left: 50%;
+    position: center; /* Posizionamento centrato */
+    top: 50%; left: 50%; /* Posizionamento al centro della pagina */
     width: 700px;
-    height: 380px; /* Added 'px' unit */
-    margin: 2px auto;
-    text-align: center;
+    height: 380px; /* Altezza del contenitore */
+    margin: 2px auto; /* Margine automatico per centrare */
+    text-align: center; 
     padding: 2px; 
-    background-color: rgb(255, 255, 255);
-    border-radius: 20px;
-    align-items: center;
-    text-align: center;
-
+    background-color: rgb(255, 255, 255); 
+    border-radius: 20px; /* Angoli arrotondati */
+    align-items: center; 
+    text-align: center; 
 }
 
+/* Stile per gli input di testo e password nel form di login */
 #login-form input[type="text"],
 #login-form input[type="password"] {
-    width: 50%;
-    padding: 10px;
-    margin-bottom: 15px;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    font-size: 1rem;
+    width: 50%; /* Larghezza del 50% del contenitore */
+    padding: 10px; /* Spaziatura interna */
+    margin-bottom: 15px; /* Margine inferiore */
+    border: 1px solid #ddd; /* Bordo grigio chiaro */
+    border-radius: 5px; /* Angoli arrotondati */
+    font-size: 1rem; /* Dimensione del font */
 }
 
+/* Stile per gli input di testo e password quando sono in focus */
 #login-form input[type="text"]:focus,
 #login-form input[type="password"]:focus {
-    outline: none;
-    border-color: #e63946;
-    box-shadow: 0 0 5px rgba(230, 57, 70, 0.3);
+    outline: none; /* Rimuove il contorno predefinito */
+    border-color: #e63946; 
+    box-shadow: 0 0 5px rgba(230, 57, 70, 0.3); /* Ombra del bordo */
 }
 
+/* Stile per il pulsante di submit nel form di login */
 #login-form input[type="submit"] {
-    width: 50%;
-    padding: 10px;
-    background-color: #e63946;
-    color: white;
-    font-size: 1rem;
-    font-weight: bold;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background 0.3s ease;
+    width: 50%; /* Larghezza del 50% del contenitore */
+    padding: 10px; /* Spaziatura interna */
+    background-color: #e63946; /* Colore di sfondo rosso */
+    color: white; /* Colore del testo bianco */
+    font-size: 1rem; /* Dimensione del font */
+    font-weight: bold; /* Testo in grassetto */
+    border: none; /* Nessun bordo */
+    border-radius: 5px; /* Angoli arrotondati */
+    cursor: pointer; /* Cambia il cursore in una mano */
+    transition: background 0.3s ease; /* Transizione per il cambio di sfondo */
 }
 
-
+/* Stile per le etichette */
 label {
-  display: block;
-  font-weight: bold;
-  color: #555;
-  margin-bottom: 5px;
-  text-align: center;
+  display: block; /* Visualizzazione a blocco */
+  font-weight: bold; /* Testo in grassetto */
+  color: #555; /* Colore del testo grigio */
+  margin-bottom: 5px; /* Margine inferiore */
+  text-align: center; 
 }
 
-
+/* Imposta l'altezza di html e body al 100% */
 html, body { height: 100%; }
+
+/* Stile per il body */
 body {
-  background:radial-gradient(ellipse at center, rgba(255,254,234,1) 0%, rgba(255,254,234,1) 35%, #ff0000 150%);
-  overflow: hidden;
+  background: radial-gradient(ellipse at center, rgba(255,254,234,1) 0%, rgba(255,254,234,1) 35%, #ff0000 150%); /* Sfondo con gradiente radiale */
+  overflow: hidden; /* Nasconde le barre di scorrimento */
 }
 
+/* Stile per l'oceano */
 .ocean { 
-  height: 0%;
-  width:100%;
-  position:absolute;
-  bottom:0;
-  left:0;
-  background: #015871;
+  height: 0%; /* Altezza iniziale */
+  width: 100%; /* Larghezza completa */
+  position: absolute; /* Posizionamento assoluto */
+  bottom: 0; /* Posizionato in basso */
+  left: 0; /* Allineato a sinistra */
+  background: #015871; /* Colore di sfondo onda blu */
 }
 
+/* Stile per le onde */
 .wave {
-    background: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/85486/wave.svg) repeat-x; 
-    position: absolute;
-    top: -198px;
-    width: 6400px;
-    height: 198px;
-    animation: wave 7s cubic-bezier( 0.36, 0.45, 0.63, 0.53) infinite;
-    transform: translate3d(0, 0, 0);
-    filter: hue-rotate(180deg) saturate(10);
+    background: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/85486/wave.svg) repeat-x; /* Immagine di sfondo ripetuta orizzontalmente */
+    position: absolute; /* Posizionamento assoluto */
+    top: -198px; /* Posizionato in alto */
+    width: 6400px; /* Larghezza dell'immagine */
+    height: 198px; /* Altezza dell'immagine */
+    animation: wave 7s cubic-bezier(0.36, 0.45, 0.63, 0.53) infinite; /* Animazione dell'onda */
+    transform: translate3d(0, 0, 0); /* Trasformazione 3D */
+    filter: hue-rotate(180deg) saturate(10); /* Filtro per cambiare il colore */
 }
 
-
+/* Stile per la seconda onda */
 .wave:nth-of-type(2) {
-  top: -175px;
-  animation: wave 7s cubic-bezier( 0.36, 0.45, 0.63, 0.53) -.125s infinite, swell 7s ease -1.25s infinite;
-  opacity: 1;
+  top: -175px; /* Posizionato in alto */
+  animation: wave 7s cubic-bezier(0.36, 0.45, 0.63, 0.53) -.125s infinite, swell 7s ease -1.25s infinite; /* Animazione dell'onda e del gonfiore */
+  opacity: 1; /* Opacità completa */
 }
 
+/* Animazione dell'onda */
 @keyframes wave {
   0% {
     margin-left: 0;
@@ -103,6 +111,7 @@ body {
   }
 }
 
+/* Animazione del gonfiore */
 @keyframes swell {
   0%, 100% {
     transform: translate3d(0,-25px,0);
