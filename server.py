@@ -19,11 +19,9 @@ db_config_analisi = {
     "database": "analisi_sangue",
 }
 
-@app.route("/", methods=["GET"])
-def home():
-    return render_template("index.html")
 
-@app.route("/login", methods=["GET", "POST"])
+
+@app.route("/", methods=["GET", "POST"])
 def login():
     if request.method == "POST":
         username = request.form["username"]
@@ -49,7 +47,7 @@ def login():
         finally:
             if conn:
                 conn.close()  # Chiude la connessione al database
-    return render_template("login.html")  # Renderizza il template di login se non è stata effettuata una richiesta POST valida
+    return render_template("index.html")  # Renderizza il template di login se non è stata effettuata una richiesta POST valida
 
 @app.route("/analisi", methods=["GET", "POST"])
 def analisi():
@@ -124,6 +122,39 @@ def elimina_analisi():
 
     conn.close()
     return redirect("/analisi")
+
+@app.route("/registrazione", methods=["GET", "POST"])
+def registrazione():
+    if request.method == "POST":
+        conn = mariadb.connect(**db_config)  # Connessione al database
+        cursor = conn.cursor()  # Crea un cursore per eseguire le query
+
+        # Recupera i dati dal form
+        nome = request.form["nome"]
+        username = request.form["username"]
+        password = request.form["password"]
+
+        # Controlla se l'utente esiste già
+        cursor.execute("SELECT * FROM users WHERE username=?", (username,))
+        user = cursor.fetchone()
+
+        if user:
+            # Se l'utente esiste già, restituisce una risposta JSON con un messaggio di errore
+            return jsonify(success=False, message="Utente già esistente")
+
+        # Se l'utente non esiste, inserisci i dati nel database
+        data = (username, password, nome)
+        cursor.execute("""
+            INSERT INTO users (username, password, nome)
+            VALUES (?, ?, ?)
+        """, data)
+        
+        conn.commit()  # Conferma la transazione
+        conn.close()  # Chiude la connessione
+
+        return jsonify(success=True, message="Registrazione effettuata con successo")  # Restituisce una risposta JSON con successo
+
+    return render_template("registrazione.html")  # Renderizza il template di registrazione
 
 if __name__ == "__main__":
     app.run(debug=True)

@@ -11,14 +11,15 @@ h2 {
     position: center; /* Posizionamento centrato */
     top: 50%; left: 50%; /* Posizionamento al centro della pagina */
     width: 700px;
-    height: 380px; /* Altezza del contenitore */
+    height: 550px; /* Altezza del contenitore */
     margin: 2px auto; /* Margine automatico per centrare */
     text-align: center; 
     padding: 2px; 
     background-color: rgb(255, 255, 255); 
     border-radius: 20px; /* Angoli arrotondati */
     align-items: center; 
-    text-align: center; 
+    text-align: center;
+    z-index: 1;
 }
 
 /* Stile per gli input di testo e password nel form di login */
@@ -41,7 +42,7 @@ h2 {
 }
 
 /* Stile per il pulsante di submit nel form di login */
-#login-form input[type="submit"] {
+#accedi {
     width: 50%; /* Larghezza del 50% del contenitore */
     padding: 10px; /* Spaziatura interna */
     background-color: #e63946; /* Colore di sfondo rosso */
@@ -52,6 +53,21 @@ h2 {
     border-radius: 5px; /* Angoli arrotondati */
     cursor: pointer; /* Cambia il cursore in una mano */
     transition: background 0.3s ease; /* Transizione per il cambio di sfondo */
+}
+
+#registrati {
+  width: 50%; /* Larghezza del 50% del contenitore */
+  padding: 10px; /* Spaziatura interna */
+  background-color: white; /* Colore di sfondo bianco */
+  color: #e63946; /* Colore del testo rosso */
+  font-size: 1rem; /* Dimensione del font */
+  font-weight: bold; /* Testo in grassetto */
+  border: 2px solid #e63946; /* Nessun bordo */
+  border-radius: 5px; /* Angoli arrotondati */
+  cursor: pointer; /* Cambia il cursore in una mano */
+  transition: background 0.3s ease; /* Transizione per il cambio di sfondo */
+  outline: none; /* Rimuove il contorno predefinito */
+  box-shadow: 0 0 5px rgba(230, 57, 70, 0.3); /* Ombra del bordo */
 }
 
 /* Stile per le etichette */
@@ -92,6 +108,7 @@ body {
     animation: wave 7s cubic-bezier(0.36, 0.45, 0.63, 0.53) infinite; /* Animazione dell'onda */
     transform: translate3d(0, 0, 0); /* Trasformazione 3D */
     filter: hue-rotate(180deg) saturate(10); /* Filtro per cambiare il colore */
+    z-index: -1; /* Z-index */
 }
 
 /* Stile per la seconda onda */
