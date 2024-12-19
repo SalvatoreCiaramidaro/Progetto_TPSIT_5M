@@ -9,6 +9,12 @@
     <link rel="stylesheet" type="text/css" href="static/styles/analisi.css">
 </head>
 <body>
+    <header>
+        <nav class="navbar">
+            <div class="logo">❤️ Analisi del Sangue</div>
+            <button class="login-btn" onclick="location.href='/';">Logout</button>
+        </nav>
+    </header>
     <h2>Gestione delle Analisi</h2>
 
     {% if nome %}
@@ -117,5 +123,10 @@
             {% endfor %}
         </tbody>
     </table>
+    <br>
+    <br>
+    <footer>
+        <p>&copy; 2024 Sistema di Gestione Analisi Sangue. Tutti i diritti riservati. Autore: Ciaramidaro Salvatore</p>
+      </footer>
 </body>
 </html>

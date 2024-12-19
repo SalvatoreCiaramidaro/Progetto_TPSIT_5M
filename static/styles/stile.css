@@ -137,3 +137,17 @@ body {
     transform: translate3d(0,5px,0);
   }
 }
+
+footer {
+  background: #e63946;
+  color: white;
+  text-align: center;
+  padding: 10px 0;
+  font-size: 0.9em;
+  z-index: 1;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  left: 0; /* Assicura che il footer inizi dal bordo sinistro della finestra */
+  right: 0; /* Assicura che il footer termini al bordo destro della finestra */
+}
