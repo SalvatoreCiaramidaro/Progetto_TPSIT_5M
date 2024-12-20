@@ -31,25 +31,6 @@ header {
     font-weight: bold;
 }
 
-.navbar ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    display: flex;
-}
-
-.navbar ul li {
-    margin: 0 15px;
-}
-
-.navbar ul li a {
-    color: rgb(255, 255, 255);
-    text-decoration: none;
-    font-weight: bold;
-    transition: color 0.3s;
-}
-
-
 
 .login-btn {
     background: white;
@@ -107,12 +88,14 @@ form input {
     font-size: 1em;
 }
 
+/* Stile per input in focus */
 form input:focus {
     border-color: #ff4d4d;
     outline: none;
     box-shadow: 0px 0px 8px rgba(255, 77, 77, 0.5);
 }
 
+/* Stile per pulsanti del form */
 form button {
     width: 100%;
     padding: 10px;
@@ -124,6 +107,7 @@ form button {
     cursor: pointer;
 }
 
+/* Stile per pulsanti del form al passaggio del mouse */
 form button:hover {
     background-color: #e63939;
 }
@@ -161,12 +145,12 @@ table tr:nth-child(even) {
 
 /* Stile per il pulsante elimina */
 form button[type="submit"] {
-    width: auto; /* Larghezza automatica */
-    padding: 5px 10px; /* Spaziatura interna del pulsante */
-    background-color: #e63939; /* Colore di sfondo del pulsante */
-    font-size: 0.9em; /* Dimensione del testo del pulsante */
-    border: none; /* Nessun bordo */
-    border-radius: 5px; /* Angoli arrotondati */
+    width: auto; 
+    padding: 5px 10px; 
+    background-color: #e63939; 
+    font-size: 0.9em; 
+    border: none; 
+    border-radius: 5px; 
 }
 
 

@@ -16,7 +16,9 @@
         </nav>
     </header>
     <h2>Gestione delle Analisi</h2>
+    
 
+    <!-- Verifica se la variabile 'nome' è definita e, in tal caso, mostra un messaggio di benvenuto -->
     {% if nome %}
     <!-- Messaggio di benvenuto -->
     <p>Benvenuto, {{ nome }}!</p>
@@ -96,6 +98,8 @@
             </tr>
         </thead>
         <tbody>
+
+            <!-- Genera una tabella HTML con i dati delle analisi e un form per eliminare ogni analisi -->
             {% for analisi in analisi_lista %}
             <tr>
                 <td>{{ analisi.id }}</td>

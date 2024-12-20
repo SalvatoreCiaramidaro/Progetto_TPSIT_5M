@@ -8,74 +8,74 @@ h2 {
 
 /* Stile per il contenitore del login */
 #login {
-    position: center; /* Posizionamento centrato */
-    top: 50%; left: 50%; /* Posizionamento al centro della pagina */
+    position: center; 
+    top: 50%; left: 50%; 
     width: 700px;
-    height: 550px; /* Altezza del contenitore */
-    margin: 2px auto; /* Margine automatico per centrare */
+    height: 550px; 
+    margin: 2px auto; 
     text-align: center; 
     padding: 2px; 
     background-color: rgb(255, 255, 255); 
-    border-radius: 20px; /* Angoli arrotondati */
+    border-radius: 20px; 
     align-items: center; 
     text-align: center;
-    z-index: 1;
+    z-index: 1; /* Porta il contenitore del login in primo piano rispetto l'onda */
 }
 
 /* Stile per gli input di testo e password nel form di login */
 #login-form input[type="text"],
 #login-form input[type="password"] {
-    width: 50%; /* Larghezza del 50% del contenitore */
-    padding: 10px; /* Spaziatura interna */
-    margin-bottom: 15px; /* Margine inferiore */
-    border: 1px solid #ddd; /* Bordo grigio chiaro */
-    border-radius: 5px; /* Angoli arrotondati */
-    font-size: 1rem; /* Dimensione del font */
+    width: 50%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ddd; 
+    border-radius: 5px;
+    font-size: 1rem; 
 }
 
 /* Stile per gli input di testo e password quando sono in focus */
 #login-form input[type="text"]:focus,
 #login-form input[type="password"]:focus {
-    outline: none; /* Rimuove il contorno predefinito */
+    outline: none; 
     border-color: #e63946; 
-    box-shadow: 0 0 5px rgba(230, 57, 70, 0.3); /* Ombra del bordo */
+    box-shadow: 0 0 5px rgba(230, 57, 70, 0.3); 
 }
 
 /* Stile per il pulsante di submit nel form di login */
 #accedi {
-    width: 50%; /* Larghezza del 50% del contenitore */
-    padding: 10px; /* Spaziatura interna */
-    background-color: #e63946; /* Colore di sfondo rosso */
-    color: white; /* Colore del testo bianco */
-    font-size: 1rem; /* Dimensione del font */
-    font-weight: bold; /* Testo in grassetto */
-    border: none; /* Nessun bordo */
-    border-radius: 5px; /* Angoli arrotondati */
+    width: 50%; 
+    padding: 10px; 
+    background-color: #e63946; 
+    color: white; 
+    font-size: 1rem; 
+    font-weight: bold; 
+    border: none; 
+    border-radius: 5px; 
     cursor: pointer; /* Cambia il cursore in una mano */
-    transition: background 0.3s ease; /* Transizione per il cambio di sfondo */
+    transition: background 0.3s ease;
 }
 
 #registrati {
-  width: 50%; /* Larghezza del 50% del contenitore */
-  padding: 10px; /* Spaziatura interna */
-  background-color: white; /* Colore di sfondo bianco */
-  color: #e63946; /* Colore del testo rosso */
-  font-size: 1rem; /* Dimensione del font */
-  font-weight: bold; /* Testo in grassetto */
-  border: 2px solid #e63946; /* Nessun bordo */
-  border-radius: 5px; /* Angoli arrotondati */
+  width: 50%; 
+  padding: 10px; 
+  background-color: white; 
+  color: #e63946; 
+  font-size: 1rem; 
+  font-weight: bold;
+  border: 2px solid #e63946; 
+  border-radius: 5px; 
   cursor: pointer; /* Cambia il cursore in una mano */
   transition: background 0.3s ease; /* Transizione per il cambio di sfondo */
   outline: none; /* Rimuove il contorno predefinito */
-  box-shadow: 0 0 5px rgba(230, 57, 70, 0.3); /* Ombra del bordo */
+  box-shadow: 0 0 5px rgba(230, 57, 70, 0.3); 
 }
 
 /* Stile per le etichette */
 label {
-  display: block; /* Visualizzazione a blocco */
-  font-weight: bold; /* Testo in grassetto */
-  color: #555; /* Colore del testo grigio */
-  margin-bottom: 5px; /* Margine inferiore */
+  display: block; 
+  font-weight: bold; 
+  color: #555; 
+  margin-bottom: 5px; 
   text-align: center; 
 }
 
@@ -90,32 +90,32 @@ body {
 
 /* Stile per l'oceano */
 .ocean { 
-  height: 0%; /* Altezza iniziale */
-  width: 100%; /* Larghezza completa */
-  position: absolute; /* Posizionamento assoluto */
-  bottom: 0; /* Posizionato in basso */
-  left: 0; /* Allineato a sinistra */
-  background: #015871; /* Colore di sfondo onda blu */
+  height: 0%; 
+  width: 100%; 
+  position: absolute; 
+  bottom: 0; 
+  left: 0; 
+  background: #015871; 
 }
 
 /* Stile per le onde */
 .wave {
-    background: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/85486/wave.svg) repeat-x; /* Immagine di sfondo ripetuta orizzontalmente */
-    position: absolute; /* Posizionamento assoluto */
-    top: -198px; /* Posizionato in alto */
-    width: 6400px; /* Larghezza dell'immagine */
-    height: 198px; /* Altezza dell'immagine */
+    background: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/85486/wave.svg) repeat-x; 
+    position: absolute; 
+    top: -198px; 
+    width: 6400px;
+    height: 198px; 
     animation: wave 7s cubic-bezier(0.36, 0.45, 0.63, 0.53) infinite; /* Animazione dell'onda */
     transform: translate3d(0, 0, 0); /* Trasformazione 3D */
     filter: hue-rotate(180deg) saturate(10); /* Filtro per cambiare il colore */
-    z-index: -1; /* Z-index */
+    z-index: -1; /* Mette in secondo piano l'onda rispetto al contenitore del form */
 }
 
 /* Stile per la seconda onda */
 .wave:nth-of-type(2) {
-  top: -175px; /* Posizionato in alto */
-  animation: wave 7s cubic-bezier(0.36, 0.45, 0.63, 0.53) -.125s infinite, swell 7s ease -1.25s infinite; /* Animazione dell'onda e del gonfiore */
-  opacity: 1; /* Opacità completa */
+  top: -175px; 
+  animation: wave 7s cubic-bezier(0.36, 0.45, 0.63, 0.53) -.125s infinite, swell 7s ease -1.25s infinite; 
+  opacity: 1; 
 }
 
 /* Animazione dell'onda */
@@ -138,6 +138,8 @@ body {
   }
 }
 
+
+/* Stile per il footer */
 footer {
   background: #e63946;
   color: white;
@@ -148,6 +150,6 @@ footer {
   position: fixed;
   bottom: 0;
   width: 100%;
-  left: 0; /* Assicura che il footer inizi dal bordo sinistro della finestra */
-  right: 0; /* Assicura che il footer termini al bordo destro della finestra */
+  left: 0;
+  right: 0;
 }

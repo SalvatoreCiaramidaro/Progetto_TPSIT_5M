@@ -4,7 +4,7 @@ import mariadb
 app = Flask(__name__)
 app.secret_key = 'your_secret_key'
 
-# Configurazione per la connessione al database al database con MariaDB
+# Configurazione per la connessioni ai database con MariaDB
 db_config = {
     "user": "root",
     "password": None,  

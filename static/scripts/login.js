@@ -2,7 +2,8 @@ document.addEventListener('DOMContentLoaded', function() {
     var form = document.getElementById('login-form');
     form.addEventListener('submit', function(event) {
         event.preventDefault(); // Impedisce il caricamento della pagina
-
+        
+        /** Crea un oggetto FormData contenente i dati del modulo specificato */
         var formData = new FormData(form);
         var xhr = new XMLHttpRequest();
         xhr.open('POST', form.action, true);
