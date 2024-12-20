@@ -7,6 +7,8 @@ pip install Flask
 sudo apt install mariadb-server nodejs npm
 sudo mysql_secure_installation
 sudo service mariadb start
+sudo apt-get install libmariadb-dev
+pip install mariadb
 
 Tutti questi comandi sono per linux, se si intende utilizzare windows bisogna cercarsi i comandi in windows.
 
