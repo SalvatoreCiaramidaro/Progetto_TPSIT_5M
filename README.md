@@ -8,11 +8,10 @@ Sistema web per la gestione delle analisi del sangue sviluppato con Python Flask
 
 ## Prerequisiti
 
-- Python 3.x
+- Python 3.x (che sia superiore alla 3.9)
 - MariaDB
 - Node.js e npm
-- Sistema operativo Linux (Ubuntu consigliato) o Windows con WSL [Opzionale]
-- XAMPP in alternativa a WSL
+- Sistema operativo Linux (Ubuntu consigliato) o Windows con WSL
 
 ## Installazione
 
