@@ -87,8 +87,8 @@ Una volta aver importato i database si passa all'installazione delle librerie Py
 
    9. **Installare le librerie Python necessarie**:
    ```bash
-    pip install -r requirements.txt
-    ```
+   pip install -r requirements.txt
+   ```
    10. **Avviare il server Flask eseguendo il file con l'apposito pulsante in visual studio code e una volta avviato il Browser immettere l'indirizzo IP**:
    ```bash
     127.0.0.1:5000
