@@ -78,9 +78,9 @@ Sistema web per la gestione delle analisi del sangue sviluppato con Python Flask
    Se il tuo nome utente è root, e il file SQL si trova in /path/to/dump.sql, il comando sarà:
 
 
-   Tutti questi comandi sono per linux e python, se si intende utilizzare windows bisogna cercarsi i comandi in windows.
+   Tutti questi comandi sono per linux(in questo caso Ubuntu in WSL) e python.
 
-   Per installare Linux, cercare sul Microsoft Store: Ubuntu con l'ultima versione.
+   Per installare LinuxI(Ubuntu in WSL), cercare sul Microsoft Store: Ubuntu con l'ultima versione.
 
 Una volta aver importato i database si passa all'installazione delle librerie Python necessarie per il funzionamento del progetto.
 
