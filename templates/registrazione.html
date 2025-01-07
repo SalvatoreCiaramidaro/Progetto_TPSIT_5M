@@ -21,18 +21,16 @@
   <br>
   <br>
   <br>
-    <!-- Login form container -->
+    <!-- registrazione form container -->
     <div id="login">
       <h2>Registrazione Operatore</h2>
       <!-- registration form -->
       <form id="login-form" method="post" action="/registrazione">
-        <!-- Nome input field -->
         <label for="nome">Nome: </label><br>
         <input type="text" id="nome" name="nome" required><br><br>
-        <!-- Username input field -->
         <label for="username">Username: </label><br>
         <input type="text" id="username" name="username" required><br><br>
-        <!-- Password input field with validation -->
+        <!-- Campo password con validazione -->
         <label for="password">Password: </label><br>
         <input type="password" id="password" name="password" pattern=".{8,}" title="La password deve contenere almeno 8 caratteri" required><br><br>
         <!-- Submit button -->
@@ -40,7 +38,7 @@
         <label>Se sei registrato clicca il bottone: </label><a href="/"><button id="accedi" type="button" class="button">Accedi</button></a>
       </form>
 
-      <!-- Response message banner -->
+      <!-- Messaggio in caso di problemi o avvenuta registrazione -->
       <div id="response-banner" style="display:none;"></div>
     </div>
     <footer>

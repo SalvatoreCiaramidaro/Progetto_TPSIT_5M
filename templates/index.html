@@ -12,7 +12,7 @@
   <link rel="icon" type="image/png" href="static/favicon/favicon.png">
 </head>
 <body>
-  <!-- Ocean wave animation -->
+  <!-- Animazione dell'onda -->
   <div class="ocean">
     <div class="wave"></div>
     <div class="wave"></div>
@@ -27,17 +27,16 @@
     <h2>Login Operatore</h2>
     <!-- Login form -->
     <form id="login-form" method="post" action="/">
-      <!-- Username input field -->
       <label for="username">Username: </label><br>
       <input type="text" id="username" name="username" required><br><br>
-      <!-- Password input field with validation -->
+      <!-- Campo validazione password -->
       <label for="password">Password: </label><br>
       <input type="password" id="password" name="password" pattern=".{8,}" title="La password deve contenere almeno 8 caratteri" required><br><br>
       <!-- Submit button -->
       <input id="accedi" type="submit" value="Accedi" class="button">
     </form>
   
-    <!-- Error message banner -->
+    <!-- Banner Messaggio di errore -->
     <div id="error-banner" style="display:none; color:red;">Invalid credentials, please try again.</div>
     <br>
     <br>
