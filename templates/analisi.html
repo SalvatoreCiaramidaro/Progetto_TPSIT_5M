@@ -16,13 +16,6 @@
         </nav>
     </header>
     <h2>Gestione delle Analisi</h2>
-    
-
-    <!-- Verifica se la variabile 'nome' è definita e, in tal caso, mostra un messaggio di benvenuto -->
-    {% if nome %}
-    <!-- Messaggio di benvenuto -->
-    <p>Benvenuto, {{ nome }}!</p>
-    {% endif %}
 
     <!-- Form per inserire una nuova analisi -->
     <form method="POST" action="/analisi">
@@ -40,7 +33,7 @@
         <input type="text" name="sesso" required><br>
 
         <label>Età:</label>
-        <input type="number" name="eta" required><br>
+        <input type="number" name="eta" min="0" required><br>
 
         <label>Data e ora prelievo:</label>
         <input type="datetime-local" name="data_ora_prelievo" required><br>
@@ -52,7 +45,7 @@
         <input type="text" name="denominazione_analisi" required><br>
 
         <label>Risultato numerico:</label>
-        <input type="number" name="risultato" required><br>
+        <input type="number" name="risultato" min="0" required><br>
 
         <label>Unità di misura:</label>
         <input type="text" name="unita_misura" required><br>
@@ -61,10 +54,10 @@
         <input type="text" name="valori_riferimento" required><br>
 
         <label>Strumenti:</label>
-        <input type="number" name="strumenti" required><br>
+        <input type="number" name="strumenti" min="0" required><br>
 
         <label>Codice Operatore:</label>
-        <input type="number" name="cod_operatore" required><br>
+        <input type="text" name="cod_operatore" pattern="\d{9}" title="Il codice Operatore deve essere composto da 9 caratteri numerici" required><br>
 
         <button type="submit">Aggiungi Analisi</button>
     </form>

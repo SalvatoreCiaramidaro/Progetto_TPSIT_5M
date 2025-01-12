@@ -38,7 +38,6 @@ def login():
             user = cursor.fetchone()  # Recupera il primo risultato della query
 
             if user:
-                session['nome'] = user[0]  # Salva il nome dell'utente nella sessione se l'utente esiste
                 return jsonify(success=True)  # Restituisce una risposta JSON con successo
             else:
                 return jsonify(success=False)  # Restituisce una risposta JSON con fallimento se l'utente non esiste
@@ -100,8 +99,7 @@ def analisi():
     ]
 
     conn.close()
-    nome = session.get('nome')  # Recupera il nome dell'utente dalla sessione
-    return render_template("analisi.html", analisi_lista=analisi_lista, nome=nome, search_query=search_query)
+    return render_template("analisi.html", analisi_lista=analisi_lista, search_query=search_query)
 
 @app.route("/elimina_analisi", methods=["POST"])
 def elimina_analisi():
