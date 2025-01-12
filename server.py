@@ -1,4 +1,4 @@
-from flask import Flask, request, render_template, redirect, jsonify, session
+from flask import Flask, request, render_template, redirect, jsonify
 import mariadb
 
 app = Flask(__name__)
@@ -32,8 +32,8 @@ def login():
             conn = mariadb.connect(**db_config)  # Tenta di connettersi al database con la configurazione specificata
             cursor = conn.cursor()  # Crea un cursore per eseguire le query
             cursor.execute(
-                "SELECT nome FROM users WHERE username=? AND password=?",  # Esegue una query per selezionare il nome dell'utente con username e password specificati
-                (username, password),
+                "SELECT id FROM users WHERE username=? AND password=?",  # Esegue una query per selezionare il nome dell'utente con username e password specificati
+                (username, password)
             )
             user = cursor.fetchone()  # Recupera il primo risultato della query
 
@@ -128,7 +128,6 @@ def registrazione():
         cursor = conn.cursor()  # Crea un cursore per eseguire le query
 
         # Recupera i dati dal form
-        nome = request.form["nome"]
         username = request.form["username"]
         password = request.form["password"]
 
@@ -141,10 +140,10 @@ def registrazione():
             return jsonify(success=False, message="Utente già esistente")
 
         # Se l'utente non esiste, inserisci i dati nel database
-        data = (username, password, nome)
+        data = (username, password)
         cursor.execute("""
-            INSERT INTO users (username, password, nome)
-            VALUES (?, ?, ?)
+            INSERT INTO users (username, password)
+            VALUES (?, ?)
         """, data)
         
         conn.commit()  # Conferma la transazione
