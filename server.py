@@ -4,14 +4,7 @@ import mariadb
 app = Flask(__name__)
 app.secret_key = 'your_secret_key'
 
-# Configurazione per la connessioni ai database con MariaDB
-db_config = {
-    "user": "root",
-    "password": None,  
-    "host": "localhost",
-    "database": "Password",  
-}
-
+ # Configurazione per la connessioni ai database con MariaDB
 db_config_analisi = {
     "user": "root",
     "password": None,
@@ -29,7 +22,7 @@ def login():
 
         conn = None  # Inizializza connessione a None
         try:
-            conn = mariadb.connect(**db_config)  # Tenta di connettersi al database con la configurazione specificata
+            conn = mariadb.connect(**db_config_analisi)  # Tenta di connettersi al database con la configurazione specificata
             cursor = conn.cursor()  # Crea un cursore per eseguire le query
             cursor.execute(
                 "SELECT id FROM users WHERE username=? AND password=?",  # Esegue una query per selezionare il nome dell'utente con username e password specificati
@@ -109,22 +102,13 @@ def elimina_analisi():
     # Elimina analisi per ID dal database
     cursor.execute("DELETE FROM analisi WHERE id=?", (request.form["id"],))
     conn.commit()
-
-    # Riassegna gli ID consecutivi
-    cursor.execute("SET @new_id = 0;")
-    cursor.execute("UPDATE analisi SET id = (@new_id := @new_id + 1);")
-
-    # Reset dell'AUTO_INCREMENT
-    cursor.execute("ALTER TABLE analisi AUTO_INCREMENT = 1;")
-    conn.commit()
-
     conn.close()
     return redirect("/analisi")
 
 @app.route("/registrazione", methods=["GET", "POST"])
 def registrazione():
     if request.method == "POST":
-        conn = mariadb.connect(**db_config)  # Connessione al database
+        conn = mariadb.connect(**db_config_analisi)  # Connessione al database
         cursor = conn.cursor()  # Crea un cursore per eseguire le query
 
         # Recupera i dati dal form

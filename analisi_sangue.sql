@@ -4,6 +4,20 @@ CREATE DATABASE analisi_sangue;
 USE analisi_sangue;
 
 
+
+DROP TABLE IF EXISTS `users`;
+
+CREATE TABLE users (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    username VARCHAR(50) NOT NULL,
+    password VARCHAR(255) NOT NULL
+);
+
+INSERT INTO users (username, password) VALUES ('user1', 'password123');
+INSERT INTO users (username, password) VALUES ('user2', 'password456');
+INSERT INTO users (username, password) VALUES ('user3', 'password789');
+
+
 DROP TABLE IF EXISTS `analisi`;
 
 CREATE TABLE analisi (
@@ -22,3 +36,6 @@ CREATE TABLE analisi (
     strumenti INT,
     cod_operatore INT
 );
+
+SELECT * FROM users;
+SELECT * FROM analisi;

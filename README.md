@@ -54,12 +54,7 @@ Sistema web per la gestione delle analisi del sangue sviluppato con Python Flask
 
 7. **Importare i Database con MariaDB**:
 
-   **Per importare il Database degli Utenti che sarebbero gli operatori con Username e Password**:
-   ```bash
-   mysql -u root -p < /root/progetto/Progetto_TPSIT_5M/immissione_password.sql
-    ```
-
-    **Per importare il Database delle Analisi del Sangue con i valori di riferimento**:
+    **Per importare il Database degli Utenti che sarebbero gli operatori con Username e Password e analisi**:
    ```bash
    mysql -u root -p < /root/progetto/Progetto_TPSIT_5M/analisi_sangue.sql
    ```

@@ -27,13 +27,13 @@
         <input type="text" name="cognome" required><br>
 
         <label>Codice Fiscale:</label>
-        <input type="text" name="codice_fiscale" required><br>
+        <input type="text" name="codice_fiscale" pattern="^[a-zA-Z]{6}[0-9]{2}[a-zA-Z][0-9]{2}[a-zA-Z][0-9]{3}[a-zA-Z]$" title="Inserisci un Codice Fiscale valido" required><br>
 
         <label>Sesso:</label>
-        <input type="text" name="sesso" required><br>
+        <input type="text" name="sesso" pattern="^[MmFf]$" title="Inserisci M per maschio o F per Femmina"  required><br>
 
         <label>Età:</label>
-        <input type="number" name="eta" min="0" required><br>
+        <input type="number" name="eta" min="0" max="130" required><br>
 
         <label>Data e ora prelievo:</label>
         <input type="datetime-local" name="data_ora_prelievo" required><br>
@@ -45,7 +45,7 @@
         <input type="text" name="denominazione_analisi" required><br>
 
         <label>Risultato numerico:</label>
-        <input type="number" name="risultato" min="0" required><br>
+        <input type="number" name="risultato" min="0" step="0.01" title="Inserisci un numero" required><br>
 
         <label>Unità di misura:</label>
         <input type="text" name="unita_misura" required><br>
