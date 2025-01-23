@@ -6,45 +6,38 @@
   <link href="static/styles/stile.css" rel="stylesheet" type="text/css">
   <!-- Meta tag for responsive design -->
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <!-- Link to external JavaScript file -->
-  <script src="static/scripts/login.js"></script>
   <!-- Favicon for the page -->
   <link rel="icon" type="image/png" href="static/favicon/favicon.png">
 </head>
 <body>
-  <!-- Animazione dell'onda -->
   <div class="ocean">
     <div class="wave"></div>
     <div class="wave"></div>
   </div>
 
-<br>
-<br>
-<br>
-<br>
-  <!-- Login form container -->
+  <br><br><br><br>
   <div id="login">
-    <h2>Login Operatore</h2>
-    <!-- Login form -->
+    <h2>Accedi</h2>
     <form id="login-form" method="post" action="/">
       <label for="username">Username: </label><br>
       <input type="text" id="username" name="username" required><br><br>
-      <!-- Campo validazione password -->
-      <label for="password">Password: </label><br>
-      <input type="password" id="password" name="password" pattern=".{8,}" title="La password deve contenere almeno 8 caratteri" required><br><br>
-      <!-- Submit button -->
-      <input id="accedi" type="submit" value="Accedi" class="button">
-    </form>
-  
-    <!-- Banner Messaggio di errore -->
-    <div id="error-banner" style="display:none; color:red;">Invalid credentials, please try again.</div>
-    <br>
-    <br>
-    <input id="registrati" type="button" value="registrati" class="button" onclick="location.href='/registrazione'">
-  </div>
-<footer>
-  <p>&copy; 2024 Sistema di Gestione Analisi Sangue. Tutti i diritti riservati. Autore: Ciaramidaro Salvatore</p>
-</footer>
-</body>
 
+      <label for="password">Password: </label><br>
+      <input type="password" id="password" name="password" required><br><br>
+
+      <input id="accedi" type="submit" value="Accedi" class="button">
+      <label>Se non sei registrato, clicca il bottone: </label>
+      <a href="/registrazione"><button id="registrati" type="button" class="button">Registrati</button></a>
+    </form>
+
+    <div id="response-banner" style="display:none;"></div>
+  </div>
+  <footer>
+    <p>&copy; 2024 Sistema di Gestione Analisi Sangue. Tutti i diritti riservati. Autore: Ciaramidaro Salvatore</p>
+  </footer>
+
+  
+  <!-- Carica lo script alla fine del body -->
+  <script src="static/scripts/login.js"></script>
+</body>
 </html>

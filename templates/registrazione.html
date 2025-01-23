@@ -1,18 +1,12 @@
 <!doctype html>
 <html>
 <head>
-  <title>registrazione</title>
-  <!-- Link to external CSS file -->
+  <title>Registrazione</title>
   <link href="static/styles/stile.css" rel="stylesheet" type="text/css">
-  <!-- Meta tag for responsive design -->
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <!-- Link to external JavaScript file -->
-  <script src="static/scripts/registrazione.js"></script>
-  <!-- Favicon for the page -->
   <link rel="icon" type="image/png" href="static/favicon/favicon.png">
 </head>
 <body>
-    <!-- Ocean wave animation -->
     <div class="ocean">
       <div class="wave"></div>
       <div class="wave"></div>
@@ -21,26 +15,30 @@
   <br>
   <br>
   <br>
-    <!-- registrazione form container -->
     <div id="login">
       <h2>Registrazione Operatore</h2>
-      <!-- registration form -->
       <form id="login-form" method="post" action="/registrazione">
         <label for="username">Username: </label><br>
         <input type="text" id="username" name="username" required><br><br>
-        <!-- Campo password con validazione -->
+
         <label for="password">Password: </label><br>
         <input type="password" id="password" name="password" pattern=".{8,}" title="La password deve contenere almeno 8 caratteri" required><br><br>
-        <!-- Submit button -->
+
+        <label for="nome_operatore">Nome Operatore: </label><br>
+        <input type="text" id="nome_operatore" name="nome_operatore" required><br><br>
+
         <input id="accedi" type="submit" value="Registrati" class="button">
-        <label>Se sei registrato clicca il bottone: </label><a href="/"><button id="accedi" type="button" class="button">Accedi</button></a>
+        <label>Se sei registrato clicca il bottone: </label>
+        <a href="/"><button id="accedi" type="button" class="button">Accedi</button></a>
       </form>
 
-      <!-- Messaggio in caso di problemi o avvenuta registrazione -->
       <div id="response-banner" style="display:none;"></div>
     </div>
     <footer>
       <p>&copy; 2024 Sistema di Gestione Analisi Sangue. Tutti i diritti riservati. Autore: Ciaramidaro Salvatore</p>
     </footer>
+
+    <!-- Carica lo script alla fine del body -->
+    <script src="static/scripts/registrazione.js"></script>
 </body>
 </html>

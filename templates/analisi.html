@@ -12,13 +12,19 @@
     <header>
         <nav class="navbar">
             <div class="logo">❤️ Analisi del Sangue</div>
-            <button class="login-btn" onclick="location.href='/';">Logout</button>
+            <button class="login-btn" onclick="location.href='/logout';">Logout</button>
         </nav>
     </header>
     <h2>Gestione delle Analisi</h2>
-
+    
+    <!-- Mostra il nome dell'operatore -->
+    <div id="operator-info">
+        <p>Operatore: <strong>{{ nome_operatore }}</strong></p>
+    </div>
+    
     <!-- Form per inserire una nuova analisi -->
-    <form method="POST" action="/analisi">
+<div id="form_analisi">
+    <form method="POST" action="/analisi#response-banner">
         <h3>Inserisci una nuova analisi:</h3>
         <label>Nome:</label>
         <input type="text" name="nome" required><br>
@@ -58,17 +64,25 @@
 
         <label>Codice Operatore:</label>
         <input type="text" name="cod_operatore" pattern="\d{9}" title="Il codice Operatore deve essere composto da 9 caratteri numerici" required><br>
-
         <button type="submit">Aggiungi Analisi</button>
     </form>
+
+    <!-- Messaggio di successo -->
+    {% if success %}
+    <div id="response-banner" style="color: green;">
+        Analisi aggiunte con successo.
+    </div>
+    {% endif %}
 
     <h3>Lista Analisi</h3>
     <br>
     <!-- Form per cercare un'analisi -->
-    <form method="GET" action="/analisi">
-        <input type="text" name="search" placeholder="Cerca per nome" value="{{ search_query }}">
+    <div id="filter">
+    <form method="GET" action="/analisi#filter">
+        <input type="text" name="search" placeholder="Cerca per Codice Fiscale" value="{{ search_query }}" pattern="^[a-zA-Z]{6}[0-9]{2}[a-zA-Z][0-9]{2}[a-zA-Z][0-9]{3}[a-zA-Z]$" title="Inserisci un Codice Fiscale valido">
         <button type="submit">Cerca</button>
     </form>
+    </div>
     <!-- Tabella delle analisi -->
     <table border="1">
         <thead>
@@ -87,6 +101,7 @@
                 <th>Valori Rif.</th>
                 <th>Strumenti</th>
                 <th>Cod. Operatore</th>
+                <th>Nome Operatore</th> <!-- Aggiungi questa intestazione -->
                 <th>Elimina</th>
             </tr>
         </thead>
@@ -109,6 +124,7 @@
                 <td>{{ analisi.valori_riferimento }}</td>
                 <td>{{ analisi.strumenti }}</td>
                 <td>{{ analisi.cod_operatore }}</td>
+                <td>{{ analisi.nome_operatore }}</td> <!-- Mostra il nome_operatore -->
                 <td>
                     <!-- Form per eliminare un'analisi -->
                     <form method="POST" action="/elimina_analisi">
