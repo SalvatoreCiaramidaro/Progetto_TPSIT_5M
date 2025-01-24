@@ -63,58 +63,14 @@ def login():
 
     return render_template("index.html")
 
-@app.route('/analisi', methods=["GET", "POST"])
+@app.route('/analisi', methods=['GET', 'POST'])
 def analisi():
-    if not session.get('logged_in'):
-        return redirect('/')
-
-    conn = None
-    cursor = None
-    try:
+    if request.method == 'GET':
+        # Recupera la lista delle analisi dal database
         conn = mariadb.connect(**db_config_analisi)
         cursor = conn.cursor()
-
-        # Recupera il nome_operatore dalla sessione
-        nome_operatore = session.get('nome_operatore', "Operatore Sconosciuto")
-        username = session.get('username')
-
-        success = False
-
-        if request.method == "POST":
-            # Inserisci nuova analisi nel database
-            data = (
-                request.form["nome"], 
-                request.form["cognome"], 
-                request.form["codice_fiscale"],
-                request.form["sesso"], 
-                int(request.form["eta"]), 
-                request.form["data_ora_prelievo"],
-                request.form["luogo_prelievo"], 
-                request.form["denominazione_analisi"],
-                float(request.form["risultato"]), 
-                request.form["unita_misura"],
-                request.form["valori_riferimento"], 
-                int(request.form["strumenti"]), 
-                int(request.form["cod_operatore"]),
-                nome_operatore  # Aggiungi il nome_operatore
-            )
-            # Esegui una query SQL per inserire dati nella tabella 'analisi'
-            cursor.execute("""
-                INSERT INTO analisi (nome, cognome, codice_fiscale, sesso, eta, data_ora_prelievo, 
-                luogo_prelievo, denominazione_analisi, risultato, unita_misura, valori_riferimento, strumenti, cod_operatore, nome_operatore)
-                VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
-            """, data)
-            
-            conn.commit()
-            success = True  # Imposta il successo a True dopo l'inserimento dei dati
-
-        # Recupera i dati per la tabella delle analisi
-        search_query = request.args.get('search', '')
-        if search_query:
-            cursor.execute("SELECT * FROM analisi WHERE codice_fiscale LIKE ?", ('%' + search_query + '%',))
-        else:
-            cursor.execute("SELECT * FROM analisi")
-        
+        cursor.execute("SELECT id, nome, cognome, codice_fiscale, sesso, eta, data_ora_prelievo, luogo_prelievo, denominazione_analisi, risultato, unita_misura, valori_riferimento, strumenti, cod_operatore FROM analisi")
+        risultati = cursor.fetchall()
         analisi_lista = [
             {
                 "id": row[0],
@@ -130,35 +86,70 @@ def analisi():
                 "unita_misura": row[10],
                 "valori_riferimento": row[11],
                 "strumenti": row[12],
-                "cod_operatore": row[13],
-                "nome_operatore": row[14]  # Aggiungi il nome_operatore
+                "cod_operatore": row[13]
             }
-            for row in cursor.fetchall()
+            for row in risultati
         ]
-
-    except mariadb.Error as e:
-        logging.error(f"Errore del database: {e}")
-        return jsonify(success=False, message="Errore del server."), 500
-
-    finally:
-        if cursor:
-            cursor.close()
-        if conn:
+        conn.close()
+        # Estrai i parametri dalla query string
+        success = request.args.get('success')
+        errore = request.args.get('errore')
+        return render_template('analisi.html', analisi_lista=analisi_lista, success=success, errore=errore)
+    
+    elif request.method == 'POST':
+        try:
+            conn = mariadb.connect(**db_config_analisi)
+            cursor = conn.cursor()
+            
+            data= (
+                request.form['nome'],
+                request.form['cognome'],
+                request.form['codice_fiscale'],
+                request.form['sesso'],
+                int(request.form['eta']),
+                request.form['data_ora_prelievo'],
+                request.form['luogo_prelievo'],
+                request.form['denominazione_analisi'],
+                float(request.form['risultato']),
+                request.form['unita_misura'],
+                request.form['valori_riferimento'],
+                int(request.form['strumenti']),
+                int(request.form['cod_operatore'])
+            )
+            # Inserisci una nuova analisi nel database, includendo 'cod_operatore'
+            cursor.execute("""
+                INSERT INTO analisi (nome, cognome, codice_fiscale, sesso, eta, data_ora_prelievo, luogo_prelievo,
+                                     denominazione_analisi, risultato, unita_misura, valori_riferimento, strumenti, cod_operatore)
+                VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+            """,data)
+            conn.commit()
             conn.close()
-
-    return render_template("analisi.html", analisi_lista=analisi_lista, search_query=search_query, success=success, nome_operatore=nome_operatore)
-
-
+            # Redirect con parametro di successo e fragment
+            return redirect("/analisi?success=true#response-banner")
+        
+        except Exception as e:
+            # In caso di errore, recupera la lista delle analisi e mostra il messaggio di errore
+            conn.close()
+            conn = mariadb.connect(**db_config_analisi)
+            cursor = conn.cursor()
+            cursor.execute("SELECT * FROM analisi")
+            analisi_lista = cursor.fetchall()
+            conn.close()
+            return render_template("analisi.html", analisi_lista=analisi_lista, success=False, errore="Errore del server.")
+    
 @app.route("/elimina_analisi", methods=["POST"])
 def elimina_analisi():
-    conn = mariadb.connect(**db_config_analisi)
-    cursor = conn.cursor()
-
-    # Elimina analisi per ID dal database
-    cursor.execute("DELETE FROM analisi WHERE id=?", (request.form["id"],))
-    conn.commit()
-    conn.close()
-    return redirect("/analisi")
+    try:
+        conn = mariadb.connect(**db_config_analisi)
+        cursor = conn.cursor()
+        analisi_id = request.form['id']
+        cursor.execute("DELETE FROM analisi WHERE id = ?", (analisi_id,))
+        conn.commit()
+        conn.close()
+        return redirect("/analisi?success=true")
+    except Exception as e:
+        conn.close()
+        return redirect("/analisi?success=false&errore=Errore durante l'eliminazione.")
 
 
 @app.route('/registrazione', methods=['GET', 'POST'])

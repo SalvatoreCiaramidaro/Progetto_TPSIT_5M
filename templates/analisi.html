@@ -17,129 +17,127 @@
     </header>
     <h2>Gestione delle Analisi</h2>
     
-    <!-- Mostra il nome dell'operatore -->
-    <div id="operator-info">
-        <p>Operatore: <strong>{{ nome_operatore }}</strong></p>
-    </div>
-    
     <!-- Form per inserire una nuova analisi -->
-<div id="form_analisi">
-    <form method="POST" action="/analisi#response-banner">
-        <h3>Inserisci una nuova analisi:</h3>
-        <label>Nome:</label>
-        <input type="text" name="nome" required><br>
+    <div id="form_analisi">
+        <form method="POST" action="/analisi?success=true#response-banner">
+            <h3>Inserisci una nuova analisi:</h3>
+            <label>Nome:</label>
+            <input type="text" name="nome" required><br>
 
-        <label>Cognome:</label>
-        <input type="text" name="cognome" required><br>
+            <label>Cognome:</label>
+            <input type="text" name="cognome" required><br>
 
-        <label>Codice Fiscale:</label>
-        <input type="text" name="codice_fiscale" pattern="^[a-zA-Z]{6}[0-9]{2}[a-zA-Z][0-9]{2}[a-zA-Z][0-9]{3}[a-zA-Z]$" title="Inserisci un Codice Fiscale valido" required><br>
+            <label>Codice Fiscale:</label>
+            <input type="text" name="codice_fiscale" pattern="^[a-zA-Z]{6}[0-9]{2}[a-zA-Z][0-9]{2}[a-zA-Z][0-9]{3}[a-zA-Z]$" title="Inserisci un Codice Fiscale valido" required><br>
 
-        <label>Sesso:</label>
-        <input type="text" name="sesso" pattern="^[MmFf]$" title="Inserisci M per maschio o F per Femmina"  required><br>
+            <label>Sesso:</label>
+            <input type="text" name="sesso" pattern="^[MmFf]$" title="Inserisci M per maschio o F per Femmina"  required><br>
 
-        <label>Età:</label>
-        <input type="number" name="eta" min="0" max="130" required><br>
+            <label>Età:</label>
+            <input type="number" name="eta" min="0" max="130" required><br>
 
-        <label>Data e ora prelievo:</label>
-        <input type="datetime-local" name="data_ora_prelievo" required><br>
+            <label>Data e ora prelievo:</label>
+            <input type="datetime-local" name="data_ora_prelievo" required><br>
 
-        <label>Luogo prelievo:</label>
-        <input type="text" name="luogo_prelievo" required><br>
+            <label>Luogo prelievo:</label>
+            <input type="text" name="luogo_prelievo" required><br>
 
-        <label>Denominazione analisi:</label>
-        <input type="text" name="denominazione_analisi" required><br>
+            <label>Denominazione analisi:</label>
+            <input type="text" name="denominazione_analisi" required><br>
 
-        <label>Risultato numerico:</label>
-        <input type="number" name="risultato" min="0" step="0.01" title="Inserisci un numero" required><br>
+            <label>Risultato numerico:</label>
+            <input type="number" name="risultato" min="0" step="0.01" title="Inserisci un numero" required><br>
 
-        <label>Unità di misura:</label>
-        <input type="text" name="unita_misura" required><br>
+            <label>Unità di misura:</label>
+            <input type="text" name="unita_misura" required><br>
 
-        <label>Valori di riferimento:</label>
-        <input type="text" name="valori_riferimento" required><br>
+            <label>Valori di riferimento:</label>
+            <input type="text" name="valori_riferimento" required><br>
 
-        <label>Strumenti:</label>
-        <input type="number" name="strumenti" min="0" required><br>
+            <label>Strumenti:</label>
+            <input type="number" name="strumenti" min="0" required><br>
 
-        <label>Codice Operatore:</label>
-        <input type="text" name="cod_operatore" pattern="\d{9}" title="Il codice Operatore deve essere composto da 9 caratteri numerici" required><br>
-        <button type="submit">Aggiungi Analisi</button>
-    </form>
+            <label>Codice Operatore:</label>
+            <input type="text" name="cod_operatore" pattern="\d{9}" title="Il codice Operatore deve essere composto da 9 caratteri numerici" required><br>
+            <button type="submit">Aggiungi Analisi</button>
+        </form>
 
-    <!-- Messaggio di successo -->
-    {% if success %}
-    <div id="response-banner" style="color: green;">
-        Analisi aggiunte con successo.
-    </div>
-    {% endif %}
+        <!-- Messaggio di successo -->
+        {% if success %}
+        <div id="response-banner" style="color: green;">
+            Analisi aggiunte con successo.
+        </div>
+        {% elif errore %}
+        <div id="response-banner" style="color: red;">
+            {{ errore }}
+        </div>
+        {% endif %}
 
-    <h3>Lista Analisi</h3>
-    <br>
-    <!-- Form per cercare un'analisi -->
-    <div id="filter">
-    <form method="GET" action="/analisi#filter">
-        <input type="text" name="search" placeholder="Cerca per Codice Fiscale" value="{{ search_query }}" pattern="^[a-zA-Z]{6}[0-9]{2}[a-zA-Z][0-9]{2}[a-zA-Z][0-9]{3}[a-zA-Z]$" title="Inserisci un Codice Fiscale valido">
-        <button type="submit">Cerca</button>
-    </form>
-    </div>
-    <!-- Tabella delle analisi -->
-    <table border="1">
-        <thead>
-            <tr>
-                <th>ID</th>
-                <th>Nome</th>
-                <th>Cognome</th>
-                <th>Codice Fiscale</th>
-                <th>Sesso</th>
-                <th>Età</th>
-                <th>Data Prelievo</th>
-                <th>Luogo</th>
-                <th>Analisi</th>
-                <th>Risultato</th>
-                <th>Unità</th>
-                <th>Valori Rif.</th>
-                <th>Strumenti</th>
-                <th>Cod. Operatore</th>
-                <th>Nome Operatore</th> <!-- Aggiungi questa intestazione -->
-                <th>Elimina</th>
-            </tr>
-        </thead>
-        <tbody>
+        <h3>Lista Analisi</h3>
+        <br>
+        <!-- Form per cercare un'analisi -->
+        <div id="filter">
+        <form method="GET" action="/analisi#filter">
+            <input type="text" name="search" placeholder="Cerca per Codice Fiscale" value="{{ search_query }}" pattern="^[a-zA-Z]{6}[0-9]{2}[a-zA-Z][0-9]{2}[a-zA-Z][0-9]{3}[a-zA-Z]$" title="Inserisci un Codice Fiscale valido">
+            <button type="submit">Cerca</button>
+        </form>
+        </div>
+        <!-- Tabella delle analisi -->
+    <div id="tab-analisi">
+        <table border="1">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Nome</th>
+                    <th>Cognome</th>
+                    <th>Codice Fiscale</th>
+                    <th>Sesso</th>
+                    <th>Età</th>
+                    <th>Data Prelievo</th>
+                    <th>Luogo</th>
+                    <th>Analisi</th>
+                    <th>Risultato</th>
+                    <th>Unità</th>
+                    <th>Valori Rif.</th>
+                    <th>Strumenti</th>
+                    <th>Cod. Operatore</th>
+                    <th>Elimina</th>
+                </tr>
+            </thead>
+            <tbody>
 
-            <!-- Genera una tabella HTML con i dati delle analisi e un form per eliminare ogni analisi -->
-            {% for analisi in analisi_lista %}
-            <tr>
-                <td>{{ analisi.id }}</td>
-                <td>{{ analisi.nome }}</td>
-                <td>{{ analisi.cognome }}</td>
-                <td>{{ analisi.codice_fiscale }}</td>
-                <td>{{ analisi.sesso }}</td>
-                <td>{{ analisi.eta }}</td>
-                <td>{{ analisi.data_ora_prelievo }}</td>
-                <td>{{ analisi.luogo_prelievo }}</td>
-                <td>{{ analisi.denominazione_analisi }}</td>
-                <td>{{ analisi.risultato }}</td>
-                <td>{{ analisi.unita_misura }}</td>
-                <td>{{ analisi.valori_riferimento }}</td>
-                <td>{{ analisi.strumenti }}</td>
-                <td>{{ analisi.cod_operatore }}</td>
-                <td>{{ analisi.nome_operatore }}</td> <!-- Mostra il nome_operatore -->
-                <td>
-                    <!-- Form per eliminare un'analisi -->
-                    <form method="POST" action="/elimina_analisi">
-                        <input type="hidden" name="id" value="{{ analisi.id }}">
-                        <button type="submit">Elimina</button>
-                    </form>
-                </td>
-            </tr>
-            {% endfor %}
-        </tbody>
-    </table>
-    <br>
-    <br>
-    <footer>
-        <p>&copy; 2024 Sistema di Gestione Analisi Sangue. Tutti i diritti riservati. Autore: Ciaramidaro Salvatore</p>
-      </footer>
-</body>
+                <!-- Genera una tabella HTML con i dati delle analisi e un form per eliminare ogni analisi -->
+                {% for analisi in analisi_lista %}
+                <tr>
+                    <td>{{ analisi.id }}</td>
+                    <td>{{ analisi.nome }}</td>
+                    <td>{{ analisi.cognome }}</td>
+                    <td>{{ analisi.codice_fiscale }}</td>
+                    <td>{{ analisi.sesso }}</td>
+                    <td>{{ analisi.eta }}</td>
+                    <td>{{ analisi.data_ora_prelievo }}</td>
+                    <td>{{ analisi.luogo_prelievo }}</td>
+                    <td>{{ analisi.denominazione_analisi }}</td>
+                    <td>{{ analisi.risultato }}</td>
+                    <td>{{ analisi.unita_misura }}</td>
+                    <td>{{ analisi.valori_riferimento }}</td>
+                    <td>{{ analisi.strumenti }}</td>
+                    <td>{{ analisi.cod_operatore }}</td>
+                    <td>
+                        <!-- Form per eliminare un'analisi -->
+                        <form method="POST" action="/elimina_analisi#tab-analisi">
+                            <input type="hidden" name="id" value="{{ analisi.id }}">
+                            <button type="submit">Elimina</button>
+                        </form>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <br>
+        <br>
+        <footer>
+            <p>&copy; 2024 Sistema di Gestione Analisi Sangue. Tutti i diritti riservati. Autore: Ciaramidaro Salvatore</p>
+          </footer>
+    </body>
 </html>
