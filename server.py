@@ -94,7 +94,7 @@ def analisi():
         # Estrai i parametri dalla query string
         success = request.args.get('success')
         errore = request.args.get('errore')
-        return render_template('analisi.html', analisi_lista=analisi_lista, success=success, errore=errore)
+        return render_template('analisi.html', analisi_lista=analisi_lista, success=success, errore=errore, nome_operatore=session.get('nome_operatore'))
     
     elif request.method == 'POST':
         try:

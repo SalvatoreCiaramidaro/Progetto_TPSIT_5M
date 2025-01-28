@@ -4,9 +4,9 @@
     <title>Gestione Analisi</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- Icona della pagina -->
-    <link rel="icon" type="image/png" href="static/favicon/favicon.png">
+    <link rel="icon" type="image/png" href="../static/favicon/favicon.png">
     <!-- Collegamento al file CSS per lo stile -->
-    <link rel="stylesheet" type="text/css" href="static/styles/analisi.css">
+    <link rel="stylesheet" type="text/css" href="../static/styles/analisi.css">
 </head>
 <body>
     <header>
@@ -16,10 +16,17 @@
         </nav>
     </header>
     <h2>Gestione delle Analisi</h2>
+
+    <!-- Benvenuto dell'operatore -->
+    <div id="operator-info">
+        {% if nome_operatore %}
+        <p>Benvenuto, <strong>{{ nome_operatore }}</strong></p>
+        {% endif %}
+    </div>
     
     <!-- Form per inserire una nuova analisi -->
     <div id="form_analisi">
-        <form method="POST" action="/analisi?success=true#response-banner">
+        <form method="POST" action="/analisi#response-banner">
             <h3>Inserisci una nuova analisi:</h3>
             <label>Nome:</label>
             <input type="text" name="nome" required><br>
@@ -56,13 +63,13 @@
 
             <label>Strumenti:</label>
             <input type="number" name="strumenti" min="0" required><br>
-
+            
             <label>Codice Operatore:</label>
             <input type="text" name="cod_operatore" pattern="\d{9}" title="Il codice Operatore deve essere composto da 9 caratteri numerici" required><br>
             <button type="submit">Aggiungi Analisi</button>
         </form>
 
-        <!-- Messaggio di successo -->
+        <!-- Messaggio di successo o errore -->
         {% if success %}
         <div id="response-banner" style="color: green;">
             Analisi aggiunte con successo.
